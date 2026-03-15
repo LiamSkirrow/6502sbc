@@ -2,7 +2,7 @@
 
 A minimal implementation of a functional 6502-based system. It has everything that's needed to get going, including a 6522 VIA (for parallel ports/GPIO control) and a 6551 ACIA (for uart connection to a serial terminal).
 
-## Pics or didn't happen
+## Pics
 TODO, include screenshots of schematic and PCB. Can I render these automatically based on the current state of the schem/pcb in the repo?
 
 ## Memory Map
