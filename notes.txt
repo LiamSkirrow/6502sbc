@@ -1,0 +1,69 @@
+
+SIGN OFF CHECKS:
+- consider a PCB solder mask colour other than green?
+- consider socketing the crystal? so different crystals can be swapped in and out
+- add some gnd test hooks for scope probe
+- add jumper header to input current path
+- make sure EEPROM has enough space for ZIF socket
+- address all text on schematic...
+- it looks like you can tie RTS to CTS, DSR to DTR to DCD (https://www.youtube.com/watch?v=XVEnxipCIJ0&ab_channel=UnistInc.), make sure each of these signals on the pin header are next to eachother so they can be tied together via a shunt connector if need be
+- read through notes on phone, pay attention to each point individually
+- what's the deal with the flow control pins? can you just tie them 'inactive' and forget about it???
+- EEPROM should be fitted in a ZIF socket
+- *** should I put the ZIF socket in a normal dip socket, so the ZIF socket can be removed eventually? ***
+- *** verify that ALL packages are actually available to buy BEFORE placing PCB order ***
+
+BOM SIGN OFF CHECKS:
+- buy some female-female wires, female-male wires
+- at end of PCB layout count up how many 0603 components are being used, check you still have enough in stock (100nF caps...)
+- *** verify that ALL packages are actually available to buy BEFORE placing PCB order ***
+- check the forward voltage of the 0805 LEDs, resize resistors if necessary
+- all parts should be HC *not* HCT or TTL 
+
+
+Soldering order of components:
+- linear regulator
+- push button/debounce circuitry
+- decode logic + pin headers for address bus access
+- clock circuit
+- everything else...
+
+
+
+
+MUST DO:
+- To verify: (simulation???)
+  - clock circuit
+
+- ??? what's the advantage of gating the PHI2 signal -> *** https://wilsonminesco.com/6502primer/addr_decoding.html ***
+- verify all the IO chip's max clock frequency capability, run system at max possible frequency
+
+Footprints:
+Might need to change:
+- LED resistors
+- verify crystal footprints
+
+Memory Map:
+  ZP     0x0000 - 0x00FF (256 Bytes)
+  STACK  0x0100 - 0x01FF (256 Bytes)
+  I/O    0x0200 - 0x021F (32 Bytes) 
+  - 6551   0x0200 - 0x020F (16 Bytes)
+  - 6522   0x0200 - 0x021F (16 Bytes)
+  MEM    0x0220 - 0x7FFF (32,224 Bytes)
+  -------------------------------------
+  ROM    0x8000 - 0xFFFF (32 kBytes)
+
+
+
+$$$
+if:
+- ~13cm x ~15cm
+- 4 layer board
+- 1.6mm thickness
+= $56.29
+
+else:
+- 2 layer
+= ~$15
+$$$
+
